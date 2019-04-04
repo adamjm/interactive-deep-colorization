@@ -226,7 +226,7 @@ class ColorizeImageTorch(ColorizeImageBase):
         for key in list(state_dict.keys()):  # need to copy keys here because we mutate in loop
             self.__patch_instance_norm_state_dict(state_dict, self.net, key.split('.'))
         self.net.load_state_dict(state_dict)
-        if gpu_id != -1:
+        if gpu_id != -1 and gpu_id:
             self.net.cuda()
         self.net.eval()
         self.net_set = True

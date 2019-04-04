@@ -136,9 +136,9 @@ class SIGGRAPHGenerator(nn.Module):
         # input_B \in [-110, +110]
         # mask_B \in [0, +0.5]
 
-        input_A = torch.Tensor(input_A).cuda()[None, :, :, :]
-        input_B = torch.Tensor(input_B).cuda()[None, :, :, :]
-        mask_B = torch.Tensor(mask_B).cuda()[None, :, :, :]
+        input_A = torch.Tensor(input_A)[None, :, :, :]
+        input_B = torch.Tensor(input_B)[None, :, :, :]
+        mask_B = torch.Tensor(mask_B)[None, :, :, :]
 
         conv1_2 = self.model1(torch.cat((input_A / 100., input_B / 110., mask_B - .5), dim=1))
         conv2_2 = self.model2(conv1_2[:, :, ::2, ::2])
